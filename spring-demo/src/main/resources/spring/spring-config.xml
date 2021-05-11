@@ -3,7 +3,24 @@
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<!--注释扫描-->
+
 	<bean id="welcomeService" class="com.cp.service.impl.WelComeServiceImpl"/>
+
+	<!--1.使用静态工厂进行创建-->
+	<bean id="user1" class="com.cp.entity.User" scope="singleton" lazy-init="true" primary="true"/>
+
+	<!--2.使用静态工厂进行创建-->
+	<!--class 的值不是写User对象的全路径，而是写静态工厂的全路径-->
+	<!--factory-method的值写要调用的方法-->
+	<bean id="user2" class="com.cp.entity.factory.StaticFactory" factory-method="getUser" scope="singleton" />
+
+	<!--3.使用实例工厂进行创建-->
+	<!--需要先创建factoryBean对象，再通过factoryBean对象进行调用-->
+	<bean id="userFactory" class="com.cp.entity.factory.UserFactory" />
+	<bean id="user3" factory-bean="userFactory" factory-method="getUser" scope="prototype"/>
+
+	<!--beanFactory创建对象-->
+	<bean id="userFactoryBean" class="com.cp.entity.factory.UserFactoryBean"/>
+
 
 </beans>

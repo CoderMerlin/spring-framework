@@ -140,6 +140,7 @@ public interface BeanFactory {
 	 * @throws NoSuchBeanDefinitionException if there is no bean with the specified name
 	 * @throws BeansException if the bean could not be obtained
 	 */
+	//根据bean的名字从容器中获取实例
 	Object getBean(String name) throws BeansException;
 
 	/**
@@ -157,6 +158,7 @@ public interface BeanFactory {
 	 * @throws BeanNotOfRequiredTypeException if the bean is not of the required type
 	 * @throws BeansException if the bean could not be created
 	 */
+
 	<T> T getBean(String name, Class<T> requiredType) throws BeansException;
 
 	/**
@@ -173,6 +175,7 @@ public interface BeanFactory {
 	 * @throws BeansException if the bean could not be created
 	 * @since 2.5
 	 */
+
 	Object getBean(String name, Object... args) throws BeansException;
 
 	/**
